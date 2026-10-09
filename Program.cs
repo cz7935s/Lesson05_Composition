@@ -7,7 +7,9 @@ var bree   = Player.Create("Bree",   3,  900, 16, 16,  8, 14, 13, 12, 15, 10, 40
 var tamsin = Player.Create("Tamsin", 3, 1100, 28, 28, 16, 12, 15, 10, 13,  8, 75);
 
 // What they're up against.
-var goblin = Creature.Create("Goblin", 7, 7, 8, 14, 10, 10, 8, 8, 50);
+var goblinScores = AbilityScore.Create(8, 14, 10, 10, 8, 8);
+
+var goblin = Creature.Create("Goblin", 7, 7, goblinScores, 50);
 
 bree.ShowSheet();
 tamsin.ShowSheet();

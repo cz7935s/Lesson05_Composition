@@ -10,10 +10,10 @@ public static class CharacterSheet
     {
         public void ShowSheet()
         {
-            Console.WriteLine($"== {player.Name} ==  level {player.Level}, {player.Experience} XP");
-            Console.WriteLine($"   HP {player.CurrentHealth}/{player.MaxHealth}    Gold {player.Gold}");
-            Console.WriteLine($"   STR {Score(player.Strength)}   DEX {Score(player.Dexterity)}   CON {Score(player.Constitution)}");
-            Console.WriteLine($"   INT {Score(player.Intelligence)}   WIS {Score(player.Wisdom)}   CHA {Score(player.Charisma)}");
+            Console.WriteLine($"== {player.Name} ==  level {player.Level}, {player.Level.Experience} XP");
+            Console.WriteLine($"   HP {player.HealthPoints.CurrentHealth}/{player.HealthPoints.MaxHealth}    Gold {player.MyWallet.Gold}");
+            Console.WriteLine($"   STR {Score(player.Abilities.Strength)}   DEX {Score(player.Abilities.Dexterity)}   CON {Score(player.Abilities.Constitution)}");
+            Console.WriteLine($"   INT {Score(player.Abilities.Intelligence)}   WIS {Score(player.Abilities.Wisdom)}   CHA {Score(player.Abilities.Charisma)}");
             Console.WriteLine();
         }
     }
@@ -24,8 +24,8 @@ public static class CharacterSheet
         {
             Console.WriteLine($"== {creature.Name} ==  worth {creature.ExperienceReward} XP");
             Console.WriteLine($"   HP {creature.CurrentHealth}/{creature.MaxHealth}");
-            Console.WriteLine($"   STR {Score(creature.Strength)}   DEX {Score(creature.Dexterity)}   CON {Score(creature.Constitution)}");
-            Console.WriteLine($"   INT {Score(creature.Intelligence)}   WIS {Score(creature.Wisdom)}   CHA {Score(creature.Charisma)}");
+            Console.WriteLine($"   STR {Score(creature.Abilities.Strength)}   DEX {Score(creature.Abilities.Dexterity)}   CON {Score(creature.Abilities.Constitution)}");
+            Console.WriteLine($"   INT {Score(creature.Abilities.Intelligence)}   WIS {Score(creature.Abilities.Wisdom)}   CHA {Score(creature.Abilities.Charisma)}");
             Console.WriteLine();
         }
     }
