@@ -1,3 +1,12 @@
+// What mistake can't happen in Creature now that could happen before?
+// Now, you can't put invalid values as the inputs of creature
+// because there are checks that specifically check against that;
+// if you do, then the creature won't be able to build. For example,
+// if you put in an XP reward as the input for abilities, then it
+// wouldn't work because these variables are now of different types
+// (i.e. abilities being an AbilityScore, not just being ints). 
+
+
 namespace Toolkit;
 
 /// <summary>
@@ -36,8 +45,7 @@ public record Creature
     /// </summary>
     public static Creature Create(string name,
         int currentHealth, int maxHealth,
-        int strength, int dexterity, int constitution,
-        int intelligence, int wisdom, int charisma,
+        AbilityScore abilities,
         int experienceReward)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -51,19 +59,12 @@ public record Creature
             throw new ArgumentOutOfRangeException(
                 nameof(currentHealth), currentHealth,
                 $"Current health runs from 0 to max health ({maxHealth}).");
-
-        
-        var stats = AbilityScore.Create(strength, dexterity, constitution, intelligence, wisdom, charisma);
-        if (stats == null)
-            throw new ArgumentOutOfRangeException("Ability scores run from 3 to 18.");
         
         if (experienceReward < 0)
             throw new ArgumentOutOfRangeException(
                 nameof(experienceReward), experienceReward,
                 "Experience reward can't be negative.");
 
-        return new Creature(name,
-            currentHealth, maxHealth, stats,
-            experienceReward);
+        return new Creature(name, currentHealth, maxHealth, abilities, experienceReward);
     }
 }
