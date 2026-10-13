@@ -19,22 +19,24 @@ public record Creature
 {
     public string Name { get; }
 
-    public int CurrentHealth { get; }
-    public int MaxHealth { get; }
+    //CHANGE TO HEALTHPOINTS
+    public HealthPoints HealthPoints { get; }
+    // public int CurrentHealth { get; }
+    // public int MaxHealth { get; }
 
     public AbilityScore Abilities { get; }
 
 
     /// <summary>Experience the party earns for defeating it.</summary>
+    // TODO : this is probably an object in its own right 
     public int ExperienceReward { get; }
 
     private Creature(string name,
-        int currentHealth, int maxHealth, AbilityScore abilities,
+        HealthPoints healthPoints, AbilityScore abilities,
         int experienceReward)
     {
         Name = name;
-        CurrentHealth = currentHealth;
-        MaxHealth = maxHealth;
+        HealthPoints = healthPoints;
         Abilities = abilities;
         ExperienceReward = experienceReward;
     }
@@ -45,7 +47,7 @@ public record Creature
     /// </summary>
     public static Creature Create(string name,
         int currentHealth, int maxHealth,
-        AbilityScore abilities,
+        int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma,
         int experienceReward)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -65,6 +67,11 @@ public record Creature
                 nameof(experienceReward), experienceReward,
                 "Experience reward can't be negative.");
 
-        return new Creature(name, currentHealth, maxHealth, abilities, experienceReward);
+        var healthPoints = Toolkit.HealthPoints.Create(maxHealth);
+        var creatureStats =
+            Toolkit.AbilityScore.Create(strength, dexterity, constitution, intelligence, wisdom, charisma)
+               ?? Toolkit.AbilityScore.Create(10, 10, 10, 10, 10, 10)!;
+
+        return new Creature(name, healthPoints, creatureStats, experienceReward);
     }
 }

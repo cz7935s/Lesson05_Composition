@@ -46,7 +46,7 @@ public record Player
 
         var stats = AbilityScore.Create(strength, dexterity, constitution, intelligence, wisdom, charisma);
 
-        var gold = Money.Default();
+        var gold = Money.Default;
 
         return new Player(name, level, healthPoints, stats, gold);
     }

@@ -23,7 +23,7 @@ public static class CharacterSheet
         public void ShowSheet()
         {
             Console.WriteLine($"== {creature.Name} ==  worth {creature.ExperienceReward} XP");
-            Console.WriteLine($"   HP {creature.CurrentHealth}/{creature.MaxHealth}");
+            Console.WriteLine($"   HP {creature.HealthPoints.CurrentHealth}/{creature.HealthPoints.MaxHealth}");
             Console.WriteLine($"   STR {Score(creature.Abilities.Strength)}   DEX {Score(creature.Abilities.Dexterity)}   CON {Score(creature.Abilities.Constitution)}");
             Console.WriteLine($"   INT {Score(creature.Abilities.Intelligence)}   WIS {Score(creature.Abilities.Wisdom)}   CHA {Score(creature.Abilities.Charisma)}");
             Console.WriteLine();
